@@ -123,7 +123,7 @@ The specification is based on IEEE 1516 High Level Architecture (HLA) Object Mod
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAbestEffort</transportation>
                         <order>Receive</order>
-                        <semantics>Optioanl: FrontVelocity denotes the spread velocity of the front line. Thus, an observer can estimate when the fire will hit a certain location. The actual boundary and the velocity hereby have the same relationship as position and velocity of a physical entity, although here in a simplifying assumption only one single speed of spreading is assumed to hold. Default = 0.</semantics>
+                        <semantics>Optional: FrontVelocity denotes the spread velocity of the front line. Thus, an observer can estimate when the fire will hit a certain location. The actual boundary and the velocity hereby have the same relationship as position and velocity of a physical entity, although here in a simplifying assumption only one single speed of spreading is assumed to hold. Default = 0.</semantics>
                     </attribute>
                     <attribute>
                         <name>Temperature</name>
@@ -245,14 +245,14 @@ The specification is based on IEEE 1516 High Level Architecture (HLA) Object Mod
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Order for building up a firebreak.</semantics>
+                            <semantics>Task for building up a firebreak.</semantics>
                         </interactionClass>
                         <interactionClass>
                             <name>CreateLevee</name>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAbestEffort</transportation>
                             <order>Receive</order>
-                            <semantics>Order for building up a levee.</semantics>
+                            <semantics>Task for building up a levee.</semantics>
                         </interactionClass>
                     </interactionClass>
                     <interactionClass>

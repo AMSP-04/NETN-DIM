@@ -57,7 +57,7 @@ Representation of a wildfire that may spread.
 |Attribute|Datatype|Semantics|
 |---|---|---|
 |FrontWidth|MeterFloat32|Required: FrontWidth indicates the thickness of the actual fire ring surrounding a no longer burning region. It is assumed that a fire start at one or more spots and then spreads in a circular shape with a fire front of certain thickness and burnt land behind the front line. The Area attribute from DiM_HazardRegion defines the outer boundary of the overall region, the front of flames in the denoted thickness is assumed to extend from inside the boundary into the region.|
-|FrontVelocity|VelocityMeterPerSecondFloat32|Optioanl: FrontVelocity denotes the spread velocity of the front line. Thus, an observer can estimate when the fire will hit a certain location. The actual boundary and the velocity hereby have the same relationship as position and velocity of a physical entity, although here in a simplifying assumption only one single speed of spreading is assumed to hold. Default = 0.|
+|FrontVelocity|VelocityMeterPerSecondFloat32|Optional: FrontVelocity denotes the spread velocity of the front line. Thus, an observer can estimate when the fire will hit a certain location. The actual boundary and the velocity hereby have the same relationship as position and velocity of a physical entity, although here in a simplifying assumption only one single speed of spreading is assumed to hold. Default = 0.|
 |Temperature|TemperatureDegreeCelsiusFloat32|Optional: Temperature, based on SI derived unit degree Celsius, unit symbol °C.|
 
 ### EarthquakeArea
@@ -124,12 +124,12 @@ Task an entity to extinguish a wildfire.
 
 ### CreateFireBreak
 
-Order for building up a firebreak.
+Task for building up a firebreak.
 
 
 ### CreateLevee
 
-Order for building up a levee.
+Task for building up a levee.
 
 
 ### Evacuate
