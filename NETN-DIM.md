@@ -174,16 +174,4 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |---|---|---|
 |HazardTypeEnum|HLAinteger16BE|Different types of hazards.|
 |LandslideTypeEnum|HLAinteger16BE|The type of landslide material.|
-        
-### Array Datatypes
-|Name|Element Datatype|Semantics|
-|---|---|---|
-        
-### Fixed Record Datatypes
-|Name|Fields|Semantics|
-|---|---|---|
-        
-### Variant Record Datatypes
-|Name|Discriminant (Datatype)|Alternatives|Semantics|
-|---|---|---|---|
     
