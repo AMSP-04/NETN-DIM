@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>NETN-DIM</name>
+        <type>FOM</type>
+        <version>1.0</version>
+        <modificationDate>2023-04-01</modificationDate>
+        <securityClassification>Unclassified</securityClassification>
+        <purpose>The NATO Education and Training Network (NETN) Disaster Module (DIM) provides a common standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.</purpose>
+        <applicationDomain></applicationDomain>
+        <description>Hazards such as wildfire, flooding, earthquakes and landslides cause different effects in a synthetic environment and to the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effect of hazards are important aspects of simulations where hazards are part of the scenario.
+        
+The NATO Education and Training Network Logistics Module (NETN-DIM) is a specification of how to model hazards and control activities to mitigate their effects, in a federated distributed simulation. 
+The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and is primarily intended to support interoperability in a federated simulation (federation) based on HLA. A Federation Object Model (FOM) Module is used to specify how data is represented and exchanged in the federation. The NETN-LOG FOM module is available as an XML file for use in HLA-based federations.</description>
+        <useLimitation></useLimitation>
+        <useHistory>v0.9 - Initial version developed by MSG-147 and used in LOE3 experiment.</useHistory>
+        <useHistory>v1.0 - Updated version developed by MSG-191. Release included in NATO-FOM 4.0</useHistory>
+        <poc>
+            <pocType>Release authority</pocType>
+            <pocName>NATO Modelling and Simulation Group</pocName>
+            <pocOrg>NATO Science and Technology Organization</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-147 M&amp;S Support for Crisis and Disaster Management Processes and Climate Change Implications</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-191 NATO Standards for Federated Simulation and Services for Integration, Verification and Certification</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>RPR-SE</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-ETR</identification>
+        </reference>
+        <other></other>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>DIM_HazardRegion</name>
+                <sharing>PublishSubscribe</sharing>
+                <semantics>The geographical region of a hazard in a synthetic environment.</semantics>
+                <attribute>
+                    <name>Time</name>
+                    <dataType>ScenarioTime</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>NA</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAbestEffort</transportation>
+                    <order>Receive</order>
+                    <semantics>Time at which the hazard region was first created.</semantics>
+                </attribute>
+                <attribute>
+                    <name>Area</name>
+                    <dataType>LocationStructArray</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAbestEffort</transportation>
+                    <order>Receive</order>
+                    <semantics>Required: Geographical boundary of the HazardRegion.</semantics>
+                </attribute>
+                <objectClass>
+                    <name>Flooding</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>Representation of a flooded area.</semantics>
+                    <attribute>
+                        <name>Level</name>
+                        <dataType>MeterFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>FloodingLevel represents the water level of the flooding relative to Mean Sea Level (MSL).</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>LevelChange</name>
+                        <dataType>LevelChangeMeterPerSecondFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>FloodingLevelChange represents the change of the water level over time. An observer thus can determine if the flood level is going to rise (and further actions/precautions may be necessary) or if the water is draining and thus recovery measure can start soon.</semantics>
+                    </attribute>
+                </objectClass>
+                <objectClass>
+                    <name>Wildfire</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>Representation of a wildfire that may spread.</semantics>
+                    <attribute>
+                        <name>FrontWidth</name>
+                        <dataType>MeterFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Required: FrontWidth indicates the thickness of the actual fire ring surrounding a no longer burning region. It is assumed that a fire start at one or more spots and then spreads in a circular shape with a fire front of certain thickness and burnt land behind the front line. The Area attribute from DiM_HazardRegion defines the outer boundary of the overall region, the front of flames in the denoted thickness is assumed to extend from inside the boundary into the region.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>FrontVelocity</name>
+                        <dataType>VelocityMeterPerSecondFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Optioanl: FrontVelocity denotes the spread velocity of the front line. Thus, an observer can estimate when the fire will hit a certain location. The actual boundary and the velocity hereby have the same relationship as position and velocity of a physical entity, although here in a simplifying assumption only one single speed of spreading is assumed to hold. Default = 0.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Temperature</name>
+                        <dataType>TemperatureDegreeCelsiusFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: Temperature, based on SI derived unit degree Celsius, unit symbol °C.</semantics>
+                    </attribute>
+                </objectClass>
+                <objectClass>
+                    <name>EarthquakeArea</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>An area affected by an earthquake.</semantics>
+                    <attribute>
+                        <name>Magnitude</name>
+                        <dataType>RichterScale</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Required: Richter magnitude scale.</semantics>
+                    </attribute>
+                </objectClass>
+                <objectClass>
+                    <name>Landslide</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>Representation of a landslide area covered by mud, snow or gravel.</semantics>
+                    <attribute>
+                        <name>Thickness</name>
+                        <dataType>MeterFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Required: Thickness in meter.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>LandslideType</name>
+                        <dataType>LandslideTypeEnum</dataType>
+                        <updateType>NA</updateType>
+                        <updateCondition></updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: The type of landslide material. Default = 0.</semantics>
+                    </attribute>
+                </objectClass>
+            </objectClass>
+            <objectClass>
+                <name>EnvironmentObject</name>
+                <objectClass>
+                    <name>LinearObject</name>
+                    <objectClass>
+                        <name>BreachableLinearObject</name>
+                        <objectClass>
+                            <name>Levee</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <semantics>A levee is a wall/separator that protects an area from flooding.</semantics>
+                        </objectClass>
+                        <objectClass>
+                            <name>Firebreak</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <semantics>A firebreak is a corridor without any burning things. The firebreak should separate the burning part from the not burning part.</semantics>
+                        </objectClass>
+                    </objectClass>
+                </objectClass>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>ETR_Root</name>
+                <interactionClass>
+                    <name>ETR_Task</name>
+                    <interactionClass>
+                        <name>PumpFlooding</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Task an entity to start pumping water out of an area.</semantics>
+                        <parameter>
+                            <name>FloodingId</name>
+                            <dataType>UUID</dataType>
+                            <semantics>Required: Reference to a Flooding object.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Duration</name>
+                            <dataType>TimeMillisecondInt64</dataType>
+                            <semantics>Optional: The duration of the pumping task. Default if not provided pumping shall continue until explicit task cancel or beginning of next task.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>ExtinguishWildfire</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Task an entity to extinguish a wildfire.</semantics>
+                        <parameter>
+                            <name>WildfireId</name>
+                            <dataType>UUID</dataType>
+                            <semantics>Required: A reference to a Wildfire object.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>Engineering</name>
+                        <interactionClass>
+                            <name>CreateFireBreak</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Order for building up a firebreak.</semantics>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>CreateLevee</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Order for building up a levee.</semantics>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>Evacuate</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>A request for evacuation</semantics>
+                        <parameter>
+                            <name>Area</name>
+                            <dataType>LocationStructArray</dataType>
+                            <semantics>Required: The geographical area in which evacuation takes place.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>EntityType</name>
+                            <dataType>EntityTypeStruct</dataType>
+                            <semantics>Required: Type of entity. Based on the Entity Type record as specified in IEEE 1278.1-1995 section 5.2.16.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Amount</name>
+                            <dataType>QuantityInt32</dataType>
+                            <semantics>Optional: How many persons / things to evacuate. Default = All.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>ETR_Report</name>
+                    <interactionClass>
+                        <name>HazardObservation</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Observation of a dangerous area.</semantics>
+                        <parameter>
+                            <name>Area</name>
+                            <dataType>LocationStructArray</dataType>
+                            <semantics>Required: The estimated area affected by the hazard.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>HazardType</name>
+                            <dataType>HazardTypeEnum</dataType>
+                            <semantics>Required: The type of hazard obeserved.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <simpleDataTypes>
+            <simpleData>
+                <name>LevelChangeMeterPerSecondFloat32</name>
+                <representation>HLAfloat32BE</representation>
+                <units>meter per second (m/s)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>Change of the water level over time.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>RichterScale</name>
+                <representation>HLAfloat32BE</representation>
+                <units>ergs</units>
+                <resolution>0.1</resolution>
+                <accuracy>0.1</accuracy>
+                <semantics>Richter magnitude is measured in energy (ergs): M=log10 (A/A0), where A=amplitude on a seismograph, and A0=1/1,000 millimeters. Each increase of 1 in Richter magnitude represents a 31-fold increase in the amount of released energy.</semantics>
+            </simpleData>
+        </simpleDataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>HazardTypeEnum</name>
+                <representation>HLAinteger16BE</representation>
+                <semantics>Different types of hazards.</semantics>
+                <enumerator>
+                    <name>Flooding</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Wildfire</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Earthquake</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Landslide</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>CBRN</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>Minefield</name>
+                    <value>6</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>LandslideTypeEnum</name>
+                <representation>HLAinteger16BE</representation>
+                <semantics>The type of landslide material.</semantics>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Mud</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Snow</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Gravel</name>
+                    <value>3</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+    </dataTypes>
+    <notes/>
+</objectModel>

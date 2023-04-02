@@ -1,6 +1,11 @@
 # NETN-DIM
 
----- NOT RELEASED ----
+
+|Version| Date| Dependencies|
+|---|---|---|
+|1.0|2023-04-01|RPR-SE, NETN-ETR|
+
+> [Full Documentation](NETN-DIM.md)
 
 The NATO Education and Training Network (NETN) Disaster Module (DIM) provides a common standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.
 
@@ -31,3 +36,11 @@ Version numbering of this FOM Module and associated documentation is based on th
 * An update of the major version number is made if the change constitutes a major restructuring, merging, addition or redefinition of semantics that breaks backward compatibility or covers entirely new concepts.
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
+
+|Version|
+|---|
+|v0.9 - Initial version developed by MSG-147 and used in LOE3 experiment.|
+|v1.0 - Updated version developed by MSG-191. Release included in NATO-FOM 4.0|
+
+> [Changelog](changelog.md)
+
