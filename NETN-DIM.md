@@ -47,8 +47,8 @@ Representation of a flooded area.
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
-|Level|MeterFloat32|FloodingLevel represents the water level of the flooding relative to Mean Sea Level (MSL).|
-|LevelChange|LevelChangeMeterPerSecondFloat32|FloodingLevelChange represents the change of the water level over time. An observer thus can determine if the flood level is going to rise (and further actions/precautions may be necessary) or if the water is draining and thus recovery measure can start soon.|
+|Level|MeterFloat32|Required: FloodingLevel represents the water level of the flooding relative to Mean Sea Level (MSL).|
+|LevelChange|LevelChangeMeterPerSecondFloat32|Optional: FloodingLevelChange represents the change of the water level over time. An observer thus can determine if the flood level is going to rise (and further actions/precautions may be necessary) or if the water is draining and thus recovery measure can start soon.|
 
 ### Wildfire
 

@@ -85,7 +85,7 @@ The specification is based on IEEE 1516 High Level Architecture (HLA) Object Mod
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAbestEffort</transportation>
                         <order>Receive</order>
-                        <semantics>FloodingLevel represents the water level of the flooding relative to Mean Sea Level (MSL).</semantics>
+                        <semantics>Required: FloodingLevel represents the water level of the flooding relative to Mean Sea Level (MSL).</semantics>
                     </attribute>
                     <attribute>
                         <name>LevelChange</name>
@@ -96,7 +96,7 @@ The specification is based on IEEE 1516 High Level Architecture (HLA) Object Mod
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAbestEffort</transportation>
                         <order>Receive</order>
-                        <semantics>FloodingLevelChange represents the change of the water level over time. An observer thus can determine if the flood level is going to rise (and further actions/precautions may be necessary) or if the water is draining and thus recovery measure can start soon.</semantics>
+                        <semantics>Optional: FloodingLevelChange represents the change of the water level over time. An observer thus can determine if the flood level is going to rise (and further actions/precautions may be necessary) or if the water is draining and thus recovery measure can start soon.</semantics>
                     </attribute>
                 </objectClass>
                 <objectClass>
