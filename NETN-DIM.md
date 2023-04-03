@@ -8,8 +8,8 @@ The NATO Education and Training Network (NETN) Disaster Module (DIM) provides a 
 
 Hazards such as wildfire, flooding, earthquakes and landslides cause different effects in a synthetic environment and to the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effect of hazards are important aspects of simulations where hazards are part of the scenario.
         
-The NATO Education and Training Network Logistics Module (NETN-DIM) is a specification of how to model hazards and control activities to mitigate their effects, in a federated distributed simulation. 
-The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and is primarily intended to support interoperability in a federated simulation (federation) based on HLA. A Federation Object Model (FOM) Module is used to specify how data is represented and exchanged in the federation. The NETN-LOG FOM module is available as an XML file for use in HLA-based federations.
+The NATO Education and Training Network Disaster Module (NETN-DIM) is a specification of how to model hazards and control activities to mitigate their effects, in a federated distributed simulation. 
+The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and is primarily intended to support interoperability in a federated simulation (federation) based on HLA. A Federation Object Model (FOM) Module is used to specify how data is represented and exchanged in the federation. The NETN-DIM FOM module is available as an XML file for use in HLA-based federations.
 
 
 
