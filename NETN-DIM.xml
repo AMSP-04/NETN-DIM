@@ -51,17 +51,6 @@ The specification is based on IEEE 1516 High Level Architecture (HLA) Object Mod
                 <sharing>PublishSubscribe</sharing>
                 <semantics>The geographical region of a hazard in a synthetic environment.</semantics>
                 <attribute>
-                    <name>Time</name>
-                    <dataType>ScenarioTime</dataType>
-                    <updateType>Static</updateType>
-                    <updateCondition>NA</updateCondition>
-                    <ownership>DivestAcquire</ownership>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAbestEffort</transportation>
-                    <order>Receive</order>
-                    <semantics>Time at which the hazard region was first created.</semantics>
-                </attribute>
-                <attribute>
                     <name>Area</name>
                     <dataType>LocationStructArray</dataType>
                     <updateType>Conditional</updateType>
@@ -171,8 +160,8 @@ The specification is based on IEEE 1516 High Level Architecture (HLA) Object Mod
                     <attribute>
                         <name>LandslideType</name>
                         <dataType>LandslideTypeEnum</dataType>
-                        <updateType>NA</updateType>
-                        <updateCondition></updateCondition>
+                        <updateType>Static</updateType>
+                        <updateCondition>NA</updateCondition>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -206,97 +195,91 @@ The specification is based on IEEE 1516 High Level Architecture (HLA) Object Mod
         <interactionClass>
             <name>HLAinteractionRoot</name>
             <interactionClass>
-                <name>ETR_Root</name>
+                <name>ETR_Task</name>
                 <interactionClass>
-                    <name>ETR_Task</name>
-                    <interactionClass>
-                        <name>PumpFlooding</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Task an entity to start pumping water out of an area.</semantics>
-                        <parameter>
-                            <name>FloodingId</name>
-                            <dataType>UUID</dataType>
-                            <semantics>Required: Reference to a Flooding object.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>Duration</name>
-                            <dataType>TimeMillisecondInt64</dataType>
-                            <semantics>Optional: The duration of the pumping task. Default if not provided pumping shall continue until explicit task cancel or beginning of next task.</semantics>
-                        </parameter>
-                    </interactionClass>
-                    <interactionClass>
-                        <name>ExtinguishWildfire</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Task an entity to extinguish a wildfire.</semantics>
-                        <parameter>
-                            <name>WildfireId</name>
-                            <dataType>UUID</dataType>
-                            <semantics>Required: A reference to a Wildfire object.</semantics>
-                        </parameter>
-                    </interactionClass>
-                    <interactionClass>
-                        <name>Engineering</name>
-                        <interactionClass>
-                            <name>CreateFireBreak</name>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Task for building up a firebreak.</semantics>
-                        </interactionClass>
-                        <interactionClass>
-                            <name>CreateLevee</name>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAbestEffort</transportation>
-                            <order>Receive</order>
-                            <semantics>Task for building up a levee.</semantics>
-                        </interactionClass>
-                    </interactionClass>
-                    <interactionClass>
-                        <name>Evacuate</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>A request for evacuation</semantics>
-                        <parameter>
-                            <name>Area</name>
-                            <dataType>LocationStructArray</dataType>
-                            <semantics>Required: The geographical area in which evacuation takes place.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>EntityType</name>
-                            <dataType>EntityTypeStruct</dataType>
-                            <semantics>Required: Type of entity. Based on the Entity Type record as specified in IEEE 1278.1-1995 section 5.2.16.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>Amount</name>
-                            <dataType>QuantityInt32</dataType>
-                            <semantics>Optional: How many persons / things to evacuate. Default = All.</semantics>
-                        </parameter>
-                    </interactionClass>
+                    <name>PumpFlooding</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Task an entity to start pumping water out of an area.</semantics>
+                    <parameter>
+                        <name>FloodingId</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: Reference to a Flooding object.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Duration</name>
+                        <dataType>TimeMillisecondInt64</dataType>
+                        <semantics>Optional: The duration of the pumping task. Default if not provided pumping shall continue until explicit task cancel or beginning of next task.</semantics>
+                    </parameter>
                 </interactionClass>
                 <interactionClass>
-                    <name>ETR_Report</name>
-                    <interactionClass>
-                        <name>HazardObservation</name>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Observation of a dangerous area.</semantics>
-                        <parameter>
-                            <name>Area</name>
-                            <dataType>LocationStructArray</dataType>
-                            <semantics>Required: The estimated area affected by the hazard.</semantics>
-                        </parameter>
-                        <parameter>
-                            <name>HazardType</name>
-                            <dataType>HazardTypeEnum</dataType>
-                            <semantics>Required: The type of hazard obeserved.</semantics>
-                        </parameter>
-                    </interactionClass>
+                    <name>ExtinguishWildfire</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Task an entity to extinguish a wildfire.</semantics>
+                    <parameter>
+                        <name>WildfireId</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: A reference to a Wildfire object.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>Evacuate</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>A request for evacuation</semantics>
+                    <parameter>
+                        <name>Area</name>
+                        <dataType>LocationStructArray</dataType>
+                        <semantics>Required: The geographical area in which evacuation takes place.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>EntityType</name>
+                        <dataType>EntityTypeStruct</dataType>
+                        <semantics>Required: Type of entity. Based on the Entity Type record as specified in IEEE 1278.1-1995 section 5.2.16.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Amount</name>
+                        <dataType>QuantityInt32</dataType>
+                        <semantics>Optional: How many persons / things to evacuate. Default = All.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>CreateFireBreak</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Task for building up a firebreak.</semantics>
+                </interactionClass>
+                <interactionClass>
+                    <name>CreateLevee</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAbestEffort</transportation>
+                    <order>Receive</order>
+                    <semantics>Task for building up a levee.</semantics>
+                </interactionClass>
+            </interactionClass>
+            <interactionClass>
+                <name>ETR_Report</name>
+                <interactionClass>
+                    <name>HazardObservation</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Observation of a dangerous area.</semantics>
+                    <parameter>
+                        <name>Area</name>
+                        <dataType>LocationStructArray</dataType>
+                        <semantics>Required: The estimated area affected by the hazard.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>HazardType</name>
+                        <dataType>HazardTypeEnum</dataType>
+                        <semantics>Required: The type of hazard obeserved.</semantics>
+                    </parameter>
                 </interactionClass>
             </interactionClass>
         </interactionClass>
