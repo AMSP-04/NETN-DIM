@@ -207,14 +207,9 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <order>Receive</order>
                     <semantics>Task an entity to start pumping water out of an area.</semantics>
                     <parameter>
-                        <name>FloodingId</name>
-                        <dataType>UUID</dataType>
-                        <semantics>Required: Reference to a Flooding object.</semantics>
-                    </parameter>
-                    <parameter>
-                        <name>Duration</name>
-                        <dataType>TimeMillisecondInt64</dataType>
-                        <semantics>Optional: The duration of the pumping task. Default if not provided pumping shall continue until explicit task cancel or beginning of next task.</semantics>
+                        <name>TaskParameters</name>
+                        <dataType>PumpFloodingTaskStruct</dataType>
+                        <semantics>Required: Task parameters.</semantics>
                     </parameter>
                 </interactionClass>
                 <interactionClass>
@@ -224,9 +219,9 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <order>Receive</order>
                     <semantics>Task an entity to extinguish a wildfire.</semantics>
                     <parameter>
-                        <name>WildfireId</name>
-                        <dataType>UUID</dataType>
-                        <semantics>Required: A reference to a Wildfire object.</semantics>
+                        <name>TaskParameters</name>
+                        <dataType>ExtinguishWildfireTaskStruct</dataType>
+                        <semantics>Required: Task parameters.</semantics>
                     </parameter>
                 </interactionClass>
                 <interactionClass>
@@ -236,19 +231,9 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <order>Receive</order>
                     <semantics>A request for evacuation</semantics>
                     <parameter>
-                        <name>Area</name>
-                        <dataType>LocationStructArray</dataType>
-                        <semantics>Required: The geographical area in which evacuation takes place.</semantics>
-                    </parameter>
-                    <parameter>
-                        <name>EntityType</name>
-                        <dataType>EntityTypeStruct</dataType>
-                        <semantics>Required: Type of entity. Based on the Entity Type record as specified in IEEE 1278.1-1995 section 5.2.16.</semantics>
-                    </parameter>
-                    <parameter>
-                        <name>Amount</name>
-                        <dataType>QuantityInt32</dataType>
-                        <semantics>Optional: How many persons / things to evacuate. Default = All.</semantics>
+                        <name>TaskParameters</name>
+                        <dataType>EvacuateTaskStruct</dataType>
+                        <semantics>Required: Task parameters.</semantics>
                     </parameter>
                 </interactionClass>
                 <interactionClass>
@@ -257,6 +242,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
                     <semantics>Task for building up a firebreak.</semantics>
+                    <parameter>
+                        <name>TaskParameters</name>
+                        <dataType>CreateFireBreakTaskStruct</dataType>
+                        <semantics>Required: Task parameters.</semantics>
+                    </parameter>
                 </interactionClass>
                 <interactionClass>
                     <name>CreateLevee</name>
@@ -264,6 +254,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <transportation>HLAbestEffort</transportation>
                     <order>Receive</order>
                     <semantics>Task for building up a levee.</semantics>
+                    <parameter>
+                        <name>TaskParameters</name>
+                        <dataType>CreateLeveeTaskStruct</dataType>
+                        <semantics>Required: Task parameters.</semantics>
+                    </parameter>
                 </interactionClass>
             </interactionClass>
             <interactionClass>
@@ -362,7 +357,182 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <value>3</value>
                 </enumerator>
             </enumeratedData>
+            <enumeratedData>
+                <name>TaskTypeEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Task types.</semantics>
+                <enumerator>
+                    <name>PumpFlooding</name>
+                    <value>701</value>
+                </enumerator>
+                <enumerator>
+                    <name>ExtinguishWildfire</name>
+                    <value>702</value>
+                </enumerator>
+                <enumerator>
+                    <name>Evacuate</name>
+                    <value>703</value>
+                </enumerator>
+                <enumerator>
+                    <name>CreateFireBreak</name>
+                    <value>704</value>
+                </enumerator>
+                <enumerator>
+                    <name>CreateLevee</name>
+                    <value>705</value>
+                </enumerator>
+            </enumeratedData>
         </enumeratedDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>PumpFloodingTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task-specific data.</semantics>
+                <field>
+                    <name>Flooding</name>
+                    <dataType>UUID</dataType>
+                    <semantics>A reference to a flooding object.</semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecondInteger32</dataType>
+                    <semantics>The duration to pump.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>ExtinguishWildfireTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task-specific data.</semantics>
+                <field>
+                    <name>Wildfire</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Reference to wildfire entity.</semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecondInteger32</dataType>
+                    <semantics>The duration of the extinguish activity. </semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>EvacuateTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task-specific data.</semantics>
+                <field>
+                    <name>Area</name>
+                    <dataType>GeodeticPolygon</dataType>
+                    <semantics>Area to evacuate.</semantics>
+                </field>
+                <field>
+                    <name>EntityType</name>
+                    <dataType>EntityTypeStruct</dataType>
+                    <semantics>Type of entities to evacuate.</semantics>
+                </field>
+                <field>
+                    <name>Amount</name>
+                    <dataType>QuantityInt32</dataType>
+                    <semantics>The amount of entities to evacuate.</semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecondInteger32</dataType>
+                    <semantics>The duration of the evacuation.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>CreateFireBreakTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task-specific data.</semantics>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecondInteger32</dataType>
+                    <semantics>Time spend creating fire break.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>CreateLeveeTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task-specific data.</semantics>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeSecondInteger32</dataType>
+                    <semantics>Time spend building levee.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>EvacuateProgressStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task-specific data.</semantics>
+                <field>
+                    <name>Amount</name>
+                    <dataType>QuantityInt32</dataType>
+                    <semantics>Amount of entities evacuated.</semantics>
+                </field>
+                <field>
+                    <name>Time</name>
+                    <dataType>TimeSecondInteger32</dataType>
+                    <semantics>Time spend evacuating.</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes>
+            <variantRecordData>
+                <name>TaskDefinitionVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>TaskTypeEnum</dataType>
+                <alternative>
+                    <enumerator>PumpFlooding</enumerator>
+                    <name>PumpFlooding</name>
+                    <dataType>PumpFloodingTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>ExtinguishWildfire</enumerator>
+                    <name>ExtinguishWildfire</name>
+                    <dataType>ExtinguishWildfireTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Evacuate</enumerator>
+                    <name>Evacuate</name>
+                    <dataType>EvacuateTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateFireBreak</enumerator>
+                    <name>CreateFireBreak</name>
+                    <dataType>CreateFireBreakTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateLevee</enumerator>
+                    <name>CreateLevee</name>
+                    <dataType>CreateLeveeTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics>Variant record for task definition data.</semantics>
+            </variantRecordData>
+            <variantRecordData>
+                <name>TaskProgressVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>TaskTypeEnum</dataType>
+                <alternative>
+                    <enumerator>PumpFlooding, ExtinguishWildfire, CreateFireBreak, CreateLevee</enumerator>
+                    <name>DIM_Duration</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics>Keeps track of elapesed time.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Evacuate</enumerator>
+                    <name>DIM_Evacuate</name>
+                    <dataType>EvacuateProgressStruct</dataType>
+                    <semantics>Keeps track of elapesed time and amount of evacuated entities.</semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics>Variant record for task progress data.</semantics>
+            </variantRecordData>
+        </variantRecordDataTypes>
     </dataTypes>
     <notes/>
 </objectModel>
