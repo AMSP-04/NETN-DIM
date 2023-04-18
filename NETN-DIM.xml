@@ -4,14 +4,14 @@
         <name>NETN-DIM</name>
         <type>FOM</type>
         <version>1.0</version>
-        <modificationDate>2023-04-01</modificationDate>
+        <modificationDate>2023-04-18</modificationDate>
         <securityClassification>Unclassified</securityClassification>
-        <purpose>The NATO Education and Training Network (NETN) Disaster Module (DIM) provides a common standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.</purpose>
+        <purpose>The NATO Education and Training Network (NETN) Disaster Module (DIM) provides a standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.</purpose>
         <applicationDomain></applicationDomain>
         <description>Hazards such as wildfire, flooding, earthquakes and landslides cause different effects in a synthetic environment and to the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effect of hazards are important aspects of simulations where hazards are part of the scenario.
         
-The NATO Education and Training Network Disaster Module (NETN-DIM) is a specification of how to model hazards and control activities to mitigate their effects, in a federated distributed simulation. 
-The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and is primarily intended to support interoperability in a federated simulation (federation) based on HLA. A Federation Object Model (FOM) Module is used to specify how data is represented and exchanged in the federation. The NETN-DIM FOM module is available as an XML file for use in HLA-based federations.</description>
+In a federated distributed simulation, the NATO Education and Training Network Disaster Module (NETN-DIM) specifies how to model hazards and control activities to mitigate their effects. 
+The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA.</description>
         <useLimitation></useLimitation>
         <useHistory>v0.9 - Initial version developed by MSG-147 and used in LOE3 experiment.</useHistory>
         <useHistory>v1.0 - Updated version developed by MSG-191. Release included in NATO-FOM 4.0</useHistory>
@@ -53,7 +53,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             <objectClass>
                 <name>DIM_HazardRegion</name>
                 <sharing>PublishSubscribe</sharing>
-                <semantics>The geographical region of a hazard in a synthetic environment.</semantics>
+                <semantics>Use the `DIM_HazardRegion` object to represent a hazard in a synthetic environment.</semantics>
                 <attribute>
                     <name>Area</name>
                     <dataType>LocationStructArray</dataType>
@@ -78,7 +78,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAbestEffort</transportation>
                         <order>Receive</order>
-                        <semantics>Required: FloodingLevel represents the water level of the flooding relative to Mean Sea Level (MSL).</semantics>
+                        <semantics>Required: FloodingLevel represents the water level of the flooding relative to the Mean Sea Level (MSL).</semantics>
                     </attribute>
                     <attribute>
                         <name>LevelChange</name>
@@ -89,13 +89,13 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAbestEffort</transportation>
                         <order>Receive</order>
-                        <semantics>Optional: FloodingLevelChange represents the change of the water level over time. An observer thus can determine if the flood level is going to rise (and further actions/precautions may be necessary) or if the water is draining and thus recovery measure can start soon.</semantics>
+                        <semantics>Optional: The water level change over time.</semantics>
                     </attribute>
                 </objectClass>
                 <objectClass>
                     <name>Wildfire</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>Representation of a wildfire that may spread.</semantics>
+                    <semantics>Use the `Wildfire` object to represent a wildfire that may spread.</semantics>
                     <attribute>
                         <name>FrontWidth</name>
                         <dataType>MeterFloat32</dataType>
@@ -105,7 +105,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAbestEffort</transportation>
                         <order>Receive</order>
-                        <semantics>Required: FrontWidth indicates the thickness of the actual fire ring surrounding a no longer burning region. It is assumed that a fire start at one or more spots and then spreads in a circular shape with a fire front of certain thickness and burnt land behind the front line. The Area attribute from DiM_HazardRegion defines the outer boundary of the overall region, the front of flames in the denoted thickness is assumed to extend from inside the boundary into the region.</semantics>
+                        <semantics>Required: Indicates the thickness of the actual fire ring surrounding a no longer burning region. The assumption is that a fire starts at one or more locations and then spreads in a circular shape with a fire front of a certain thickness and burnt land behind the front line. The Area attribute defines the outer boundary of the overall region, and the front of the flames is assumed to extend from the boundary into the region.</semantics>
                     </attribute>
                     <attribute>
                         <name>FrontVelocity</name>
@@ -116,7 +116,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAbestEffort</transportation>
                         <order>Receive</order>
-                        <semantics>Optional: FrontVelocity denotes the spread velocity of the front line. Thus, an observer can estimate when the fire will hit a certain location. The actual boundary and the velocity hereby have the same relationship as position and velocity of a physical entity, although here in a simplifying assumption only one single speed of spreading is assumed to hold. Default = 0.</semantics>
+                        <semantics>Optional: The spread velocity of the front line. The Default = 0.</semantics>
                     </attribute>
                     <attribute>
                         <name>Temperature</name>
@@ -127,13 +127,13 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional: Temperature, based on SI derived unit degree Celsius, unit symbol °C.</semantics>
+                        <semantics>Optional: The temperature in the front line.</semantics>
                     </attribute>
                 </objectClass>
                 <objectClass>
                     <name>EarthquakeArea</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>An area affected by an earthquake.</semantics>
+                    <semantics>Use the `EarhquakeArea` object to represent an area affected by an earthquake.</semantics>
                     <attribute>
                         <name>Magnitude</name>
                         <dataType>RichterScale</dataType>
@@ -149,7 +149,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <objectClass>
                     <name>Landslide</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>Representation of a landslide area covered by mud, snow or gravel.</semantics>
+                    <semantics>Use the `Landslide` object to represent a landslide area covered by mud, snow or gravel.</semantics>
                     <attribute>
                         <name>Thickness</name>
                         <dataType>MeterFloat32</dataType>
@@ -241,7 +241,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Task for building up a firebreak.</semantics>
+                    <semantics>Use the `CreateFireBreak` task to request an entity to build a firebreak.</semantics>
                     <parameter>
                         <name>TaskParameters</name>
                         <dataType>CreateFireBreakTaskStruct</dataType>
@@ -253,7 +253,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAbestEffort</transportation>
                     <order>Receive</order>
-                    <semantics>Task for building up a levee.</semantics>
+                    <semantics>Use the `CreateLevee` task to request an entity to construct a levee.</semantics>
                     <parameter>
                         <name>TaskParameters</name>
                         <dataType>CreateLeveeTaskStruct</dataType>
@@ -277,7 +277,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>HazardType</name>
                         <dataType>HazardTypeEnum</dataType>
-                        <semantics>Required: The type of hazard obeserved.</semantics>
+                        <semantics>Required: The type of hazard observed.</semantics>
                     </parameter>
                 </interactionClass>
             </interactionClass>
@@ -299,7 +299,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <units>ergs</units>
                 <resolution>0.1</resolution>
                 <accuracy>0.1</accuracy>
-                <semantics>Richter magnitude is measured in energy (ergs): M=log10 (A/A0), where A=amplitude on a seismograph, and A0=1/1,000 millimeters. Each increase of 1 in Richter magnitude represents a 31-fold increase in the amount of released energy.</semantics>
+                <semantics>Richter magnitude is measured in energy (ergs): M=log10 (A/A0), where A=amplitude on a seismograph, and A0=1/1,000 millimeters. Each increase of 1 in Richter magnitude represents a 31-fold increase in released energy.</semantics>
             </simpleData>
         </simpleDataTypes>
         <enumeratedDataTypes>
