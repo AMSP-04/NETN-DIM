@@ -57,7 +57,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <semantics>Use the `DIM_HazardRegion` object to represent a hazard in a synthetic environment.</semantics>
                 <attribute>
                     <name>Area</name>
-                    <dataType>LocationStructArray</dataType>
+                    <dataType>GeodeticPolygon</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
                     <ownership>DivestAcquire</ownership>
@@ -511,7 +511,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>CreateLeveeTaskStruct</dataType>
                     <semantics>Task parameters.</semantics>
                 </alternative>
-                <encoding>HLAvariantRecord</encoding>
+                <encoding>HLAextendableVariantRecord</encoding>
                 <semantics>Variant record for task definition data.</semantics>
             </variantRecordData>
             <variantRecordData>
@@ -530,7 +530,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>EvacuateProgressStruct</dataType>
                     <semantics>Keeps track of elapesed time and amount of evacuated entities.</semantics>
                 </alternative>
-                <encoding>HLAvariantRecord</encoding>
+                <encoding>HLAextendableVariantRecord</encoding>
                 <semantics>Variant record for task progress data.</semantics>
             </variantRecordData>
         </variantRecordDataTypes>
