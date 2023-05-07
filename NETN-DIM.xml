@@ -202,64 +202,67 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             <interactionClass>
                 <name>ETR_Task</name>
                 <interactionClass>
-                    <name>PumpFlooding</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Task an entity to start pumping water out of an area.</semantics>
-                    <parameter>
-                        <name>TaskParameters</name>
-                        <dataType>PumpFloodingTaskStruct</dataType>
-                        <semantics>Required: Task parameters.</semantics>
-                    </parameter>
-                </interactionClass>
-                <interactionClass>
-                    <name>ExtinguishWildfire</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Task an entity to extinguish a wildfire.</semantics>
-                    <parameter>
-                        <name>TaskParameters</name>
-                        <dataType>ExtinguishWildfireTaskStruct</dataType>
-                        <semantics>Required: Task parameters.</semantics>
-                    </parameter>
-                </interactionClass>
-                <interactionClass>
-                    <name>Evacuate</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>A request for evacuation</semantics>
-                    <parameter>
-                        <name>TaskParameters</name>
-                        <dataType>EvacuateTaskStruct</dataType>
-                        <semantics>Required: Task parameters.</semantics>
-                    </parameter>
-                </interactionClass>
-                <interactionClass>
-                    <name>CreateFireBreak</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Use the `CreateFireBreak` task to request an entity to build a firebreak.</semantics>
-                    <parameter>
-                        <name>TaskParameters</name>
-                        <dataType>CreateFireBreakTaskStruct</dataType>
-                        <semantics>Required: Task parameters.</semantics>
-                    </parameter>
-                </interactionClass>
-                <interactionClass>
-                    <name>CreateLevee</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Use the `CreateLevee` task to request an entity to construct a levee.</semantics>
-                    <parameter>
-                        <name>TaskParameters</name>
-                        <dataType>CreateLeveeTaskStruct</dataType>
-                        <semantics>Required: Task parameters.</semantics>
-                    </parameter>
+                    <name>RequestTask</name>
+                    <interactionClass>
+                        <name>CreateLevee</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Use the `CreateLevee` task to request an entity to construct a levee.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>CreateLeveeTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>CreateFireBreak</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Use the `CreateFireBreak` task to request an entity to build a firebreak.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>CreateFireBreakTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>ExtinguishWildfire</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Task an entity to extinguish a wildfire.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>ExtinguishWildfireTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>PumpFlooding</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Task an entity to start pumping water out of an area.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>PumpFloodingTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>Evacuate</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>A request for evacuation</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>EvacuateTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
                 </interactionClass>
             </interactionClass>
             <interactionClass>
