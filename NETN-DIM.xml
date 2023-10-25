@@ -14,7 +14,7 @@ In a federated distributed simulation, the NATO Education and Training Network D
 The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA.</description>
         <useLimitation></useLimitation>
         <useHistory>v0.9 - Initial version developed by MSG-147 and used in LOE3 experiment.</useHistory>
-        <useHistory>v1.0 - Updated version developed by MSG-191. Release included in NATO-FOM 4.0</useHistory>
+        <useHistory>v1.0 - Updated version developed by MSG-191. Release included in NETN FOM 4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
