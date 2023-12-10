@@ -4,7 +4,7 @@
         <name>NETN-DIM</name>
         <type>FOM</type>
         <version>1.0</version>
-        <modificationDate>2023-11-20</modificationDate>
+        <modificationDate>2023-12-10</modificationDate>
         <securityClassification>Unclassified</securityClassification>
         <purpose>The NATO Education and Training Network (NETN) Disaster Module (DIM) provides a standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.</purpose>
         <applicationDomain></applicationDomain>
@@ -40,6 +40,10 @@ The specification is based on IEEE 1516 High Level Architecture (HLA) Object Mod
         <reference>
             <type>Dependency</type>
             <identification>NETN-ETR</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-BASE</identification>
         </reference>
         <other>
 Copyright © 2020 by NATO/OTAN. All rights reserved.
@@ -185,11 +189,33 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <name>Levee</name>
                             <sharing>PublishSubscribe</sharing>
                             <semantics>A levee is a wall/separator that protects an area from flooding.</semantics>
+                            <attribute>
+                                <name>Height</name>
+                                <dataType>MeterFloat32</dataType>
+                                <updateType>Static</updateType>
+                                <updateCondition>N/A</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics>Required: Max height over Mean-Sea Level that this levee protects against flooding.</semantics>
+                            </attribute>
                         </objectClass>
                         <objectClass>
                             <name>Firebreak</name>
                             <sharing>PublishSubscribe</sharing>
                             <semantics>A firebreak is a corridor without any burning things. The firebreak should separate the burning part from the not burning part.</semantics>
+                            <attribute>
+                                <name>Width</name>
+                                <dataType>MeterFloat32</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics>Required: Width of the firebreak.</semantics>
+                            </attribute>
                         </objectClass>
                     </objectClass>
                 </objectClass>

@@ -3,7 +3,7 @@
 
 |Version| Date| Dependencies|
 |---|---|---|
-|1.0|2023-11-20|RPR-SE, NETN-ETR|
+|1.0|2023-12-10|RPR-SE, NETN-ETR, NETN-BASE|
 
 > [Full Documentation](NETN-DIM.md)
 
