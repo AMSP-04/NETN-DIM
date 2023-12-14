@@ -564,5 +564,14 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             </variantRecordData>
         </variantRecordDataTypes>
     </dataTypes>
-    <notes/>
+    <notes>
+        <note>
+            <label>netn-dim_changelog</label>
+            <semantics></semantics>
+        </note>
+        <note>
+            <label>netn-dim_overview</label>
+            <semantics></semantics>
+        </note>
+    </notes>
 </objectModel>
