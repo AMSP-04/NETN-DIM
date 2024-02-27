@@ -3,7 +3,7 @@
 
 |Version| Date| Dependencies|
 |---|---|---|
-|1.0|2023-04-18|RPR-SE, NETN-ETR|
+|1.0|2023-12-10|RPR-SE, NETN-ETR, NETN-BASE|
 
 > [Full Documentation](NETN-DIM.md)
 
@@ -40,7 +40,7 @@ Version numbering of this FOM Module and associated documentation is based on th
 |Version|
 |---|
 |v0.9 - Initial version developed by MSG-147 and used in LOE3 experiment.|
-|v1.0 - Updated version developed by MSG-191. Release included in NATO-FOM 4.0|
+|v1.0 - Updated version developed by MSG-191. Release included in NETN FOM 4.0|
 
 > [Changelog](changelog.md)
 
