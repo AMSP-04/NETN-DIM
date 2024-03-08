@@ -14,101 +14,99 @@ The specification is based on IEEE 1516 High Level Architecture (HLA) Object Mod
 
 
 ## Overview 
-The NETN-DIM introduces the `DIM_HazardRegion` object class for representing areas of different types of disasters.
-
-```mermaid
+The NETN-DIM introduces the `DIM_HazardRegion` object class for representing areas of different types of disasters. 
+ 
+```mermaid 
 classDiagram 
-direction LR
-
-HLAobjectRoot <|-- DIM_HazardRegion
-
-HLAobjectRoot : CreateTime(NETN-BASE)
-HLAobjectRoot : UniqueId(NETN-BASE)
-DIM_HazardRegion <|-- Flooding
-DIM_HazardRegion <|-- Wildfire
-DIM_HazardRegion <|-- EarthquakeArea
-DIM_HazardRegion <|-- Landslide
-DIM_HazardRegion : Area
-Flooding : Level
-Flooding : LevelChange
-Wildfire : FrontVelocity
-Wildfire : FrontWidth
-Wildfire : Temperature
-EarthquakeArea : Magnitude
-Landslide : LandslideType
-Landslide : Thickness
-
-
-```
-
-The module also extends the RPR-SE `BreachableLinearObject` class by defining `Levee` and `Firebreak` objects for mitigation and the prevention of effects caused by `Flooding` and `Wildfire` respectively.
-
-```mermaid
+direction LR 
+ 
+HLAobjectRoot <|-- DIM_HazardRegion 
+ 
+HLAobjectRoot : CreateTime(NETN-BASE) 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+DIM_HazardRegion <|-- Flooding 
+DIM_HazardRegion <|-- Wildfire 
+DIM_HazardRegion <|-- EarthquakeArea 
+DIM_HazardRegion <|-- Landslide 
+DIM_HazardRegion : Area 
+Flooding : Level 
+Flooding : LevelChange 
+Wildfire : FrontVelocity 
+Wildfire : FrontWidth 
+Wildfire : Temperature 
+EarthquakeArea : Magnitude 
+Landslide : LandslideType 
+Landslide : Thickness 
+ 
+ 
+``` 
+ 
+The module also extends the RPR-SE `BreachableLinearObject` class by defining `Levee` and `Firebreak` objects for mitigation and the prevention of effects caused by `Flooding` and `Wildfire` respectively. 
+ 
+```mermaid 
 classDiagram 
-direction LR
-
-HLAobjectRoot <|-- EnvironmentObject
-HLAobjectRoot : UniqueId(NETN-BASE)
-
-EnvironmentObject <|-- LinearObject
-EnvironmentObject : ForceIdentifier(RPR-SE)
-EnvironmentObject : ObjectIdentifier(RPR-SE)
-EnvironmentObject : ObjectType(RPR-SE)
-LinearObject <|-- BreachableLinearObject
-BreachableLinearObject <|-- Levee
-BreachableLinearObject <|-- Firebreak
-BreachableLinearObject : SegmentRecords(RPR-SE)
-Levee : Height
-Firebreak : Width
-
-```
-
-## Tasking and Reporting
-
-The NETN-DIM module extends the NETN-ETR `Task` and `ETR_Report` interaction classes to provide task control actions for several disaster mitigation actions.
-
-```mermaid
+direction LR 
+ 
+HLAobjectRoot <|-- EnvironmentObject 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+ 
+EnvironmentObject <|-- LinearObject 
+EnvironmentObject : ForceIdentifier(RPR-SE) 
+EnvironmentObject : ObjectIdentifier(RPR-SE) 
+EnvironmentObject : ObjectType(RPR-SE) 
+LinearObject <|-- BreachableLinearObject 
+BreachableLinearObject <|-- Levee 
+BreachableLinearObject <|-- Firebreak 
+BreachableLinearObject : SegmentRecords(RPR-SE) 
+Levee : Height 
+Firebreak : Width 
+ 
+``` 
+ 
+## Tasking and Reporting 
+ 
+The NETN-DIM module extends the NETN-ETR `Task` and `ETR_Report` interaction classes to provide task control actions for several disaster mitigation actions. 
+ 
+```mermaid 
 classDiagram 
-direction LR
-
-HLAinteractionRoot <|-- SMC_EntityControl
-HLAinteractionRoot : SendTime(NETN-BASE)
-HLAinteractionRoot : UniqueId(NETN-BASE)
-
-SMC_EntityControl <|-- Task
-SMC_EntityControl : Entity(NETN-SMC)
-Task <|-- Evacuate
-Task <|-- PumpFlooding
-Task <|-- ExtinguishWildfire
-Task <|-- CreateFireBreak
-Task <|-- CreateLevee
-Task : TaskId(NETN-ETR)
-Evacuate : TaskParameters
-PumpFlooding : TaskParameters
-ExtinguishWildfire : TaskParameters
-CreateFireBreak : TaskParameters
-CreateLevee : TaskParameters
-```
-
-A simulated entity observing a hazard, uses the NETN-ETR `ETR_Report` subclass `HazardObservation` to send an observation report.
-
-```mermaid
+direction LR 
+ 
+HLAinteractionRoot <|-- SMC_EntityControl 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+ 
+SMC_EntityControl <|-- Task 
+SMC_EntityControl : Entity(NETN-SMC) 
+Task <|-- Evacuate 
+Task <|-- PumpFlooding 
+Task <|-- ExtinguishWildfire 
+Task <|-- CreateFireBreak 
+Task <|-- CreateLevee 
+Task : TaskId(NETN-ETR) 
+Evacuate : TaskParameters 
+PumpFlooding : TaskParameters 
+ExtinguishWildfire : TaskParameters 
+CreateFireBreak : TaskParameters 
+CreateLevee : TaskParameters 
+``` 
+ 
+A simulated entity observing a hazard, uses the NETN-ETR `ETR_Report` subclass `HazardObservation` to send an observation report. 
+ 
+```mermaid 
 classDiagram 
-direction LR
-HLAinteractionRoot <|-- ETR_Report
-HLAinteractionRoot : SendTime(NETN-BASE)
-HLAinteractionRoot : UniqueId(NETN-BASE)
-ETR_Report <|-- HazardObservation
-ETR_Report : Receiver(NETN-ETR)
-ETR_Report : ReportId(NETN-ETR)
-ETR_Report : ReportingEntity(NETN-ETR)
-ETR_Report : TimeStamp(NETN-ETR)
-HazardObservation : Area
-HazardObservation : HazardType
-
+direction LR 
+HLAinteractionRoot <|-- ETR_Report 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+ETR_Report <|-- HazardObservation 
+ETR_Report : Receiver(NETN-ETR) 
+ETR_Report : ReportId(NETN-ETR) 
+ETR_Report : ReportingEntity(NETN-ETR) 
+ETR_Report : TimeStamp(NETN-ETR) 
+HazardObservation : Area 
+HazardObservation : HazardType 
+ 
 ```
-
-
 
 
 ## Object Classes
@@ -275,7 +273,7 @@ Observation of a dangerous area.
 |ReportId<br/>(NETN-ETR)|UUID|Required: Unique identifier for the report itself.| 
 |ReportingEntity<br/>(NETN-ETR)|UUID|Required: The entity sending the report.| 
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
-|TimeStamp<br/>(NETN-ETR)|EpochTime|Required: The timestamp of the report in Scenario Time.| 
+|TimeStamp<br/>(NETN-ETR)||| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### Evacuate
