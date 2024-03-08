@@ -347,7 +347,7 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |---|---|
 |CreateFireBreakTaskStruct|Task-specific data.|
 |CreateLeveeTaskStruct|Task-specific data.|
-|EntityControlActionEnum|Control actions for entities.|
+|EntityControlActionEnum|Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.|
 |EvacuateProgressStruct|Task-specific data.|
 |EvacuateTaskStruct|Task-specific data.|
 |ExtinguishWildfireTaskStruct|Task-specific data.|
@@ -368,7 +368,7 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 ### Enumerated Datatypes
 |Name|Representation|Semantics|
 |---|---|---|
-|EntityControlActionEnum|HLAinteger32BE|Control actions for entities.|
+|EntityControlActionEnum|HLAinteger32BE|Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.|
 |HazardTypeEnum|HLAinteger16BE|Different types of hazards.|
 |LandslideTypeEnum|HLAinteger16BE|The type of landslide material.|
         
