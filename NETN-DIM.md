@@ -107,6 +107,7 @@ HazardObservation : HazardType
 ```
 
 
+
 ## Object Classes
 
 ```mermaid

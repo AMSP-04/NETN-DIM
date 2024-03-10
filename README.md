@@ -5,6 +5,7 @@
 |---|---|---|
 |1.0|2024-03-05|RPR-SE, NETN-ETR, NETN-BASE|
 
+
 > [Full Documentation](NETN-DIM.md)
 
 The NATO Education and Training Network Disaster Module (NETN-DIM) provides a standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.
