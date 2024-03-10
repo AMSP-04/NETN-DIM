@@ -6,4 +6,5 @@
 
 ### v1.0 - Updated version developed by MSG-191. Release included in NETN FOM 4.0
 
+* Initial version.
 

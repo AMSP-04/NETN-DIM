@@ -11,7 +11,7 @@ Hazards such as wildfires, flooding, earthquakes, and landslides have different 
 
 
 ## Overview 
-                
+ 
 The NETN-DIM introduces the `DIM_HazardRegion` object class to represent areas affected by different types of disasters 
  
 ```mermaid 

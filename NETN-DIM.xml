@@ -11,7 +11,7 @@
         <description>Hazards such as wildfires, flooding, earthquakes, and landslides have different effects in a synthetic environment and on the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effects of hazards are important aspects of simulations where hazards are part of the scenario.</description>
         <useLimitation></useLimitation>
         <useHistory>v0.9 - Initial version developed by MSG-147 and used in LOE3 experiment.</useHistory>
-        <useHistory>v1.0 - Updated version developed by MSG-191. Release included in NETN FOM 4.0</useHistory>
+        <useHistory notes="netn-dim_changelog">v1.0 - Updated version developed by MSG-191. Release included in NETN FOM 4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -564,12 +564,12 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
     <notes>
         <note>
             <label>netn-dim_changelog</label>
-            <semantics></semantics>
+            <semantics>* Initial version.</semantics>
         </note>
         <note>
             <label>netn-dim_overview</label>
             <semantics>## Overview 
-                
+ 
 The NETN-DIM introduces the `DIM_HazardRegion` object class to represent areas affected by different types of disasters 
  
 ```mermaid 
