@@ -6,15 +6,13 @@
 
 The NATO Education and Training Network Disaster Module (NETN-DIM) provides a standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.
 
-Hazards such as wildfire, flooding, earthquakes and landslides cause different effects in a synthetic environment and to the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effect of hazards are important aspects of simulations where hazards are part of the scenario.
-        
-In a federated distributed simulation, the NATO Education and Training Network Disaster Module (NETN-DIM) specifies how to model hazards and control activities to mitigate their effects. 
-The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA.
+Hazards such as wildfires, flooding, earthquakes, and landslides have different effects in a synthetic environment and on the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effects of hazards are important aspects of simulations where hazards are part of the scenario.
 
 
 
 ## Overview 
-The NETN-DIM introduces the `DIM_HazardRegion` object class for representing areas of different types of disasters. 
+                
+The NETN-DIM introduces the `DIM_HazardRegion` object class to represent areas affected by different types of disasters 
  
 ```mermaid 
 classDiagram 
@@ -41,7 +39,7 @@ Landslide : Thickness
  
 ``` 
  
-The module also extends the RPR-SE `BreachableLinearObject` class by defining `Levee` and `Firebreak` objects for mitigation and the prevention of effects caused by `Flooding` and `Wildfire` respectively. 
+The module also extends the RPR-SE `BreachableLinearObject` class by defining `Levee` and `Firebreak` objects for mitigation and the prevention of effects caused by `Flooding` and `Wildfire`, respectively. 
  
 ```mermaid 
 classDiagram 
@@ -90,7 +88,7 @@ CreateFireBreak : TaskParameters
 CreateLevee : TaskParameters 
 ``` 
  
-A simulated entity observing a hazard, uses the NETN-ETR `ETR_Report` subclass `HazardObservation` to send an observation report. 
+A simulated entity observing a hazard uses the NETN-ETR `ETR_Report` subclass `HazardObservation` to send an observation report. 
  
 ```mermaid 
 classDiagram 
@@ -273,7 +271,7 @@ Observation of a dangerous area.
 |ReportId<br/>(NETN-ETR)|UUID|Required: Unique identifier for the report itself.| 
 |ReportingEntity<br/>(NETN-ETR)|UUID|Required: The entity sending the report.| 
 |SendTime<br/>(NETN-BASE)|EpochTime|Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. Required for all ETR related interactions.| 
-|TimeStamp<br/>(NETN-ETR)||| 
+|TimeStamp<br/>(NETN-ETR)|EpochTime|Required: The time when the report was created.| 
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all ETR related interactions.| 
 
 ### Evacuate

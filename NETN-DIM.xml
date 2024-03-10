@@ -8,10 +8,7 @@
         <securityClassification>Unclassified</securityClassification>
         <purpose>The NATO Education and Training Network Disaster Module (NETN-DIM) provides a standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.</purpose>
         <applicationDomain></applicationDomain>
-        <description>Hazards such as wildfire, flooding, earthquakes and landslides cause different effects in a synthetic environment and to the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effect of hazards are important aspects of simulations where hazards are part of the scenario.
-        
-In a federated distributed simulation, the NATO Education and Training Network Disaster Module (NETN-DIM) specifies how to model hazards and control activities to mitigate their effects. 
-The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA.</description>
+        <description>Hazards such as wildfires, flooding, earthquakes, and landslides have different effects in a synthetic environment and on the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effects of hazards are important aspects of simulations where hazards are part of the scenario.</description>
         <useLimitation></useLimitation>
         <useHistory>v0.9 - Initial version developed by MSG-147 and used in LOE3 experiment.</useHistory>
         <useHistory>v1.0 - Updated version developed by MSG-191. Release included in NETN FOM 4.0</useHistory>
@@ -572,7 +569,8 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
         <note>
             <label>netn-dim_overview</label>
             <semantics>## Overview 
-The NETN-DIM introduces the `DIM_HazardRegion` object class for representing areas of different types of disasters. 
+                
+The NETN-DIM introduces the `DIM_HazardRegion` object class to represent areas affected by different types of disasters 
  
 ```mermaid 
 classDiagram 
@@ -599,7 +597,7 @@ Landslide : Thickness
  
 ``` 
  
-The module also extends the RPR-SE `BreachableLinearObject` class by defining `Levee` and `Firebreak` objects for mitigation and the prevention of effects caused by `Flooding` and `Wildfire` respectively. 
+The module also extends the RPR-SE `BreachableLinearObject` class by defining `Levee` and `Firebreak` objects for mitigation and the prevention of effects caused by `Flooding` and `Wildfire`, respectively. 
  
 ```mermaid 
 classDiagram 
@@ -648,7 +646,7 @@ CreateFireBreak : TaskParameters
 CreateLevee : TaskParameters 
 ``` 
  
-A simulated entity observing a hazard, uses the NETN-ETR `ETR_Report` subclass `HazardObservation` to send an observation report. 
+A simulated entity observing a hazard uses the NETN-ETR `ETR_Report` subclass `HazardObservation` to send an observation report. 
  
 ```mermaid 
 classDiagram 
